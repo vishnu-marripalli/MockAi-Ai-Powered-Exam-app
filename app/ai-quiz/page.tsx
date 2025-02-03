@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Progress } from "@/components/ui/progress";
+// import { Progress } from "@/components/ui/progress";
 import { Check, X, Loader2 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import CreativeAILoader from "@/components/Loader";
@@ -131,10 +131,10 @@ export default function Home() {
           {questions.length > 0 && !showResults && (
             <div>
               <div className="mb-4">
-                <Progress
+                {/* <Progress
                   value={(currentQuestionIndex + 1) / questions.length * 100}
                   className="h-2"
-                />
+                /> */}
                 <p className="text-sm text-gray-500 mt-1">
                   Question {currentQuestionIndex + 1} of {questions.length}
                 </p>

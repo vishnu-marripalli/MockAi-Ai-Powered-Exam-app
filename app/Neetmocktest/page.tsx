@@ -7,7 +7,7 @@
 import React, { useState, useEffect } from "react";
 import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+// import { Progress } from "@/components/ui/progress";
 import { Timer, BookOpen, Flag, ChevronLeft, ChevronRight, CheckCircle, XCircle, HelpCircle, Menu } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -435,77 +435,85 @@ const NeetMockTest = () => {
                 Test Results
               </AlertDialogTitle>
               <AlertDialogDescription>
-                <div className="space-y-6 sm:space-y-8">
-                  {(() => {
-                    const results = calculateScore();
-                    return (
-                      <>
-                        <div className="text-center">
-                          <div className="text-2xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 mb-2 sm:mb-4">
-                            Your Score: {results.score}
-                          </div>
-                          <Progress 
-                            value={(results.correct / (results.correct + results.incorrect + results.unattempted)) * 100} 
-                            className="h-2 sm:h-3 w-full max-w-xs sm:max-w-md mx-auto"
-                          />
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
-                          <div className="p-4 sm:p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-sm text-center border border-green-200">
-                            <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1 sm:mb-2">
-                              {results.correct}
-                            </div>
-                            <div className="text-xs sm:text-sm font-medium text-green-600">
-                              Correct Answers
-                            </div>
-                          </div>
-                          <div className="p-4 sm:p-6 bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow-sm text-center border border-red-200">
-                            <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-1 sm:mb-2">
-                              {results.incorrect}
-                            </div>
-                            <div className="text-xs sm:text-sm font-medium text-red-600">
-                              Incorrect Answers
-                            </div>
-                          </div>
-                          <div className="p-4 sm:p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-sm text-center border border-gray-200">
-                            <div className="text-2xl sm:text-3xl font-bold text-gray-600 mb-1 sm:mb-2">
-                              {results.unattempted}
-                            </div>
-                            <div className="text-xs sm:text-sm font-medium text-gray-600">
-                              Not Attempted
-                            </div>
-                          </div>
-                        </div>
+              <div className="space-y-6 sm:space-y-8">
+  {(() => {
+    const results = calculateScore();
 
-                        {/* Additional Statistics */}
-                        <div className="mt-6 p-4 bg-white rounded-xl shadow-sm border border-gray-200">
-                          <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">
-                            Detailed Analysis
-                          </h3>
-                          <div className="space-y-3">
-                            <div className="flex justify-between items-center text-sm sm:text-base">
-                              <span className="text-gray-600">Accuracy Rate</span>
-                              <span className="font-medium text-gray-800">
-                                {((results.correct / (results.correct + results.incorrect)) * 100).toFixed(1)}%
-                              </span>
-                            </div>
-                            <div className="flex justify-between items-center text-sm sm:text-base">
-                              <span className="text-gray-600">Completion Rate</span>
-                              <span className="font-medium text-gray-800">
-                                {(((results.correct + results.incorrect) / (results.correct + results.incorrect + results.unattempted)) * 100).toFixed(1)}%
-                              </span>
-                            </div>
-                            <div className="flex justify-between items-center text-sm sm:text-base">
-                              <span className="text-gray-600">Total Questions</span>
-                              <span className="font-medium text-gray-800">
-                                {results.correct + results.incorrect + results.unattempted}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </>
-                    );
-                  })()}
-                </div>
+    // Ensure the percentage is calculated safely
+    const totalAttempts = results.correct + results.incorrect + results.unattempted;
+    const percentage = totalAttempts === 0
+      ? 0
+      : (results.correct / totalAttempts) * 100;
+
+    return (
+      <>
+        <div className="text-center">
+          <div className="text-2xl sm:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 mb-2 sm:mb-4">
+            Your Score: {results.score}
+          </div>
+          {/* <Progress
+            value={percentage}
+            className="h-2 sm:h-3 w-full max-w-xs sm:max-w-md mx-auto"
+          /> */}
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
+          <div className="p-4 sm:p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-sm text-center border border-green-200">
+            <div className="text-2xl sm:text-3xl font-bold text-green-600 mb-1 sm:mb-2">
+              {results.correct}
+            </div>
+            <div className="text-xs sm:text-sm font-medium text-green-600">
+              Correct Answers
+            </div>
+          </div>
+          <div className="p-4 sm:p-6 bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow-sm text-center border border-red-200">
+            <div className="text-2xl sm:text-3xl font-bold text-red-600 mb-1 sm:mb-2">
+              {results.incorrect}
+            </div>
+            <div className="text-xs sm:text-sm font-medium text-red-600">
+              Incorrect Answers
+            </div>
+          </div>
+          <div className="p-4 sm:p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-sm text-center border border-gray-200">
+            <div className="text-2xl sm:text-3xl font-bold text-gray-600 mb-1 sm:mb-2">
+              {results.unattempted}
+            </div>
+            <div className="text-xs sm:text-sm font-medium text-gray-600">
+              Not Attempted
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Statistics */}
+        <div className="mt-6 p-4 bg-white rounded-xl shadow-sm border border-gray-200">
+          <h3 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800">
+            Detailed Analysis
+          </h3>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center text-sm sm:text-base">
+              <span className="text-gray-600">Accuracy Rate</span>
+              <span className="font-medium text-gray-800">
+                {((results.correct / (results.correct + results.incorrect)) * 100).toFixed(1)}%
+              </span>
+            </div>
+            <div className="flex justify-between items-center text-sm sm:text-base">
+              <span className="text-gray-600">Completion Rate</span>
+              <span className="font-medium text-gray-800">
+                {(((results.correct + results.incorrect) / totalAttempts) * 100).toFixed(1)}%
+              </span>
+            </div>
+            <div className="flex justify-between items-center text-sm sm:text-base">
+              <span className="text-gray-600">Total Questions</span>
+              <span className="font-medium text-gray-800">
+                {totalAttempts}
+              </span>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  })()}
+</div>
+
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter className="mt-6">
