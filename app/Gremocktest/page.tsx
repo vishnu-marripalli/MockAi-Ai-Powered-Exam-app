@@ -12,41 +12,41 @@
 // import { Progress } from "@/components/ui/progress";
 
 // // Type definitions
-type QuestionOption = string;
-type CorrectAnswer = string | string[];
+// type QuestionOption = string;
+// type CorrectAnswer = string | string[];
 
-interface Question {
-  type: 'text_completion' | 'multiple_choice' | 'sentence_equivalence' | 'reading_comprehension' | 'numeric_entry' | 'data_interpretation' | 'algebra' | 'geometry';
-  question: string;
-  options?: QuestionOption[];
-  correct_answer?: string;
-  correct_answers?: string[];
-  passage?: string;
-  chart_data?: string;
-  questions?: SubQuestion[];
-}
+// interface Question {
+//   type: 'text_completion' | 'multiple_choice' | 'sentence_equivalence' | 'reading_comprehension' | 'numeric_entry' | 'data_interpretation' | 'algebra' | 'geometry';
+//   question: string;
+//   options?: QuestionOption[];
+//   correct_answer?: string;
+//   correct_answers?: string[];
+//   passage?: string;
+//   chart_data?: string;
+//   questions?: SubQuestion[];
+// }
 
-interface SubQuestion {
-  question: string;
-  correct_answer: string;
-}
+// interface SubQuestion {
+//   question: string;
+//   correct_answer: string;
+// }
 
-interface Section {
-  section: string;
-  section_number: number;
-  questions: Question[];
-}
+// interface Section {
+//   section: string;
+//   section_number: number;
+//   questions: Question[];
+// }
 
-interface ExamResults {
-  totalQuestions: number;
-  correctAnswers: number;
-  percentageScore: string;
-  sectionResults: Record<string, {
-    total: number;
-    correct: number;
-    percentage: string;
-  }>;
-}
+// interface ExamResults {
+//   totalQuestions: number;
+//   correctAnswers: number;
+//   percentageScore: string;
+//   sectionResults: Record<string, {
+//     total: number;
+//     correct: number;
+//     percentage: string;
+//   }>;
+// }
 
 export default function ExamPage() {
 //   const [examData, setExamData] = useState<Section[]>([]);
