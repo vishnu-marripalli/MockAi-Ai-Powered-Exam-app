@@ -22,6 +22,65 @@ interface ExamCard {
   link: string;
 }
 
+interface ExamCardComponentProps {
+  card: ExamCard;
+  index: number;
+  hoveredCard: number | null;
+  setHoveredCard: React.Dispatch<React.SetStateAction<number | null>>;
+}
+
+const ExamCardComponent: React.FC<ExamCardComponentProps> = ({ card, index, hoveredCard, setHoveredCard }) => (
+  <Card
+    className={`relative transform transition-all duration-300 hover:shadow-xl ${
+      hoveredCard === index ? 'scale-105' : ''
+    } ${card.category === 'ai' ? 'ring-2 ring-blue-500 ring-opacity-50' : ''}`}
+    onMouseEnter={() => setHoveredCard(index)}
+    onMouseLeave={() => setHoveredCard(null)}
+  >
+    <CardHeader>
+      <div className="flex justify-between items-start mb-4">
+        <div className={`p-2 rounded-lg bg-gray-100 ${card.color}`}>
+          {card.icon}
+        </div>
+        <Badge variant="secondary" className={`${card.category === 'ai' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100'}`}>
+          {card.badge}
+        </Badge>
+      </div>
+      <CardTitle className="text-xl mb-2">{card.title}</CardTitle>
+      <CardDescription>{card.description}</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="grid grid-cols-3 gap-2 my-4 text-sm">
+        <div className="text-center p-2 bg-gray-50 rounded">
+          <Timer className="h-4 w-4 mx-auto mb-1" />
+          <span className="block text-gray-600">{card.duration}</span>
+        </div>
+        <div className="text-center p-2 bg-gray-50 rounded">
+          <Users className="h-4 w-4 mx-auto mb-1" />
+          <span className="block text-gray-600">{card.users}</span>
+        </div>
+        <div className="text-center p-2 bg-gray-50 rounded">
+          <BookOpen className="h-4 w-4 mx-auto mb-1" />
+          <span className="block text-gray-600">{card.questions}</span>
+        </div>
+      </div>
+    </CardContent>
+    <CardFooter>
+      <Link href={card.link}>
+      <Button 
+        className={`w-full ${
+          card.category === 'ai' 
+            ? 'bg-gradient-to-r from-blue-600 to-blue-800' 
+            : 'bg-gradient-to-r from-blue-600 to-purple-600'
+        } hover:opacity-90 transition-all duration-300`}
+      >
+        Start Now
+      </Button>
+      </Link>
+    </CardFooter>
+  </Card>
+);
+
 export default function HomePage() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
@@ -192,56 +251,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-// Extracted Card Component
-const ExamCardComponent = ({ card, index, hoveredCard, setHoveredCard }) => (
-  <Card
-    className={`relative transform transition-all duration-300 hover:shadow-xl ${
-      hoveredCard === index ? 'scale-105' : ''
-    } ${card.category === 'ai' ? 'ring-2 ring-blue-500 ring-opacity-50' : ''}`}
-    onMouseEnter={() => setHoveredCard(index)}
-    onMouseLeave={() => setHoveredCard(null)}
-  >
-    <CardHeader>
-      <div className="flex justify-between items-start mb-4">
-        <div className={`p-2 rounded-lg bg-gray-100 ${card.color}`}>
-          {card.icon}
-        </div>
-        <Badge variant="secondary" className={`${card.category === 'ai' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100'}`}>
-          {card.badge}
-        </Badge>
-      </div>
-      <CardTitle className="text-xl mb-2">{card.title}</CardTitle>
-      <CardDescription>{card.description}</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <div className="grid grid-cols-3 gap-2 my-4 text-sm">
-        <div className="text-center p-2 bg-gray-50 rounded">
-          <Timer className="h-4 w-4 mx-auto mb-1" />
-          <span className="block text-gray-600">{card.duration}</span>
-        </div>
-        <div className="text-center p-2 bg-gray-50 rounded">
-          <Users className="h-4 w-4 mx-auto mb-1" />
-          <span className="block text-gray-600">{card.users}</span>
-        </div>
-        <div className="text-center p-2 bg-gray-50 rounded">
-          <BookOpen className="h-4 w-4 mx-auto mb-1" />
-          <span className="block text-gray-600">{card.questions}</span>
-        </div>
-      </div>
-    </CardContent>
-    <CardFooter>
-      <Link href={card.link}>
-      <Button 
-        className={`w-full ${
-          card.category === 'ai' 
-            ? 'bg-gradient-to-r from-blue-600 to-blue-800' 
-            : 'bg-gradient-to-r from-blue-600 to-purple-600'
-        } hover:opacity-90 transition-all duration-300`}
-      >
-        Start Now
-      </Button>
-      </Link>
-    </CardFooter>
-  </Card>
-);
