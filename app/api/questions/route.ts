@@ -1,4 +1,6 @@
-export const config = { runtime: "edge" };
+// export const config = { runtime: "edge" };
+
+export const runtime = "edge";
 
 import { NextResponse } from "next/server";
 import { fetchQuestions } from "@/lib/aiClient";
