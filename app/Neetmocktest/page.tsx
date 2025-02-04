@@ -12,6 +12,7 @@ import { Timer, BookOpen, Flag, ChevronLeft, ChevronRight, CheckCircle, XCircle,
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import CreativeAILoader from "@/components/Loader";
 
   
   interface Question {
@@ -203,37 +204,9 @@ const NeetMockTest = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 p-2 sm:p-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center mb-4 sm:mb-6">
-            <Skeleton className="h-6 sm:h-8 w-32 sm:w-48" />
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <Skeleton className="h-10 sm:h-12 w-24 sm:w-32" />
-              <Skeleton className="h-10 sm:h-12 w-20 sm:w-28" />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
-            <div className="lg:col-span-3">
-              <Skeleton className="h-12 w-full mb-4" />
-              <LoadingQuestionCard />
-            </div>
-            <div className="hidden lg:block">
-              <Card>
-                <CardHeader>
-                  <Skeleton className="h-6 w-40" />
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-4 gap-2">
-                    {Array(20).fill(0).map((_, i) => (
-                      <Skeleton key={i} className="h-10 w-full" />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </div>
+      <>
+      <CreativeAILoader/>
+       </>
     );
   }
 
