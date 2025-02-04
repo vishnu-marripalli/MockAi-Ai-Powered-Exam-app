@@ -71,6 +71,7 @@ Format:
 ]
 
 Important:
+-Dont give answer as option like A,B,C,D
 - Follow latest NCERT syllabus
 - Include NCERT exemplar-type questions
 - Balance theory (60%) and numericals (40%) in Physics/Chemistry
