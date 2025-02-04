@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { fetchQuestions } from "@/lib/aiClient";
 
 export async function POST(req: Request) {
-    "use server";  // Ensure it's treated as a server function
+    // "use server";  // Ensure it's treated as a server function
 
   const { topic } = await req.json(); // Get topic from frontend/
   try {
