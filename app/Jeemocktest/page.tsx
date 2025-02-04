@@ -92,7 +92,7 @@ const JeeMockTest = () => {
     async function fetchQuestions() {
       try {
         const res = await fetch("/api/Jeequestions", {
-          method: "POST",
+          method: "GET",
           headers: { "Content-Type": "application/json" },
         });
         if (res.ok) {
