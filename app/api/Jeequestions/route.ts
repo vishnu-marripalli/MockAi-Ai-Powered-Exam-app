@@ -1,5 +1,6 @@
 export const dynamic = 'force-static'
 
+export const runtime = "edge";
 
 import { NextResponse } from "next/server";
 import { fetchQuestions } from "@/lib/aiClientforJEE";

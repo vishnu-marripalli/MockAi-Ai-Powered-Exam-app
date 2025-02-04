@@ -3,6 +3,7 @@ export const dynamic = 'force-static'
 
 import { NextResponse } from "next/server";
 import { fetchQuestions } from "@/lib/aiClientGRE";
+export const runtime = "edge";
 
 export async function POST(req: Request) {
     // "use server";  // Ensure it's treated as a server function
