@@ -1,7 +1,7 @@
 {
     "functions": {
       "api/questions": {
-        "maxDuration": 9000
+        "maxDuration": 900
       }
     }
   }
