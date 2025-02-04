@@ -1,0 +1,8 @@
+{
+    "functions": {
+      "api/questions": {
+        "maxDuration": 80
+      }
+    }
+  }
+  
