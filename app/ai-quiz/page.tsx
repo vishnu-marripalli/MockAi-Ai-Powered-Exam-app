@@ -43,8 +43,8 @@ export default function Home() {
           body: JSON.stringify({ topic }),
           headers: { "Content-Type": "application/json" },
         });
-        console.log(res);
-
+        const text = await res.text();  
+        console.log("Raw response:", text);
         const data = await res.json();
         console.log(data);
         if (data.data) {
