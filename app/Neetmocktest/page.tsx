@@ -40,23 +40,7 @@ import CreativeAILoader from "@/components/Loader";
     score: number;
   }
 
-const LoadingQuestionCard = () => (
-  <Card>
-    <CardHeader>
-      <Skeleton className="h-8 w-64" />
-    </CardHeader>
-    <CardContent>
-      <div className="space-y-6">
-        <Skeleton className="h-20 w-full" />
-        <div className="space-y-3">
-          {[1, 2, 3, 4].map((i) => (
-            <Skeleton key={i} className="h-16 w-full" />
-          ))}
-        </div>
-      </div>
-    </CardContent>
-  </Card>
-);
+
 
 const QuestionNavigator = ({ 
   questions,
