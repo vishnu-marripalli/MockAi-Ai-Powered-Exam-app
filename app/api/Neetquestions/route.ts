@@ -4,7 +4,7 @@ export const dynamic = 'force-static'
 import { NextResponse } from "next/server";
 import { fetchQuestions } from "@/lib/aiClientforNEET";
 
-export async function POST(req: Request) {
+export async function GET() {
     "use server";  // Ensure it's treated as a server function
   try {
     const questions = await fetchQuestions();

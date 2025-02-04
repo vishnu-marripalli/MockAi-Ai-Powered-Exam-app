@@ -108,7 +108,7 @@ const NeetMockTest = () => {
     async function fetchQuestions() {
       try {
         const res = await fetch("/api/Neetquestions", {
-          method: "POST",
+          method: "GET",
           headers: { "Content-Type": "application/json" },
         });
         if (res.ok) {
