@@ -4,7 +4,7 @@ export async function fetchQuestions() {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-    const prompt = `Generate a 80-question mock test based on the NEET exam pattern. The test should consist of three sections: Physics, Chemistry,Zoology, and Botany, with 20 questions in each section. Each section should include:
+    const prompt = `Generate a 60-question mock test based on the NEET exam pattern. The test should consist of three sections: Physics, Chemistry,Zoology, and Botany, with 15 questions in each section. Each section should include:
 
 1. **Physics**: Mechanics, Thermodynamics, Electromagnetism, Optics, Modern Physics, Laws of Motion, Gravitation, and other important NEET topics.
 2. **Chemistry**:
