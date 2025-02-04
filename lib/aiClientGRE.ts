@@ -74,7 +74,7 @@ export async function fetchQuestions() {
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const textOutput = response.text();
-        // console.log("Raw AI Response:", textOutput);
+        console.log("Raw AI Response:", textOutput);
           // Extract JSON part from AI response
           const jsonMatch = textOutput.match(/\[.*\]/s);
           const questions = jsonMatch ? JSON.parse(jsonMatch[0]) : [];
