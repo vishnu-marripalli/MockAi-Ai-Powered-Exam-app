@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { fetchQuestions } from "@/lib/aiClientGRE";
 
 export async function POST(req: Request) {
-    "use server";  // Ensure it's treated as a server function
+    // "use server";  // Ensure it's treated as a server function
   try {
     const questions = await fetchQuestions();
     // console.log(questions);
