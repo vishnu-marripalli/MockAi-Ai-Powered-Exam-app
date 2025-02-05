@@ -30,35 +30,35 @@ export default function Home() {
   const [selectedAnswers, setSelectedAnswers] = useState<SelectedAnswers>({});
   const [showResults, setShowResults] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
-
-  useEffect(() => {
-    async function fetchQuestions(topic: string): Promise<void> {
-      setLoading(true);
-      setShowResults(false);
-      setSelectedAnswers({});
-      setCurrentQuestionIndex(0);
-      try {
-        const res = await fetch("/api/questions", {
-          method: "POST",
-          body: JSON.stringify({ topic }),
-          headers: { "Content-Type": "application/json" },
-        });
-        // const text = await res.text();  
-        // console.log("Raw response:", text);
-        const data = await res.json();
-        console.log(data);
-        if (data.data) {
-          setQuestions(data.data);
-        } else {
-          setQuestions([]);
-        }
-      } catch (error) {
-        console.error("Error fetching questions:", error);
+  async function fetchQuestions(topic: string): Promise<void> {
+    setLoading(true);
+    setShowResults(false);
+    setSelectedAnswers({});
+    setCurrentQuestionIndex(0);
+    try {
+      const res = await fetch("/api/questions", {
+        method: "POST",
+        body: JSON.stringify({ topic }),
+        headers: { "Content-Type": "application/json" },
+      });
+      // const text = await res.text();  
+      // console.log("Raw response:", text);
+      const data = await res.json();
+      // console.log(data);
+      if (data.data) {
+        setQuestions(data.data);
+      } else {
         setQuestions([]);
-      } finally {
-        setLoading(false);
       }
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+      setQuestions([]);
+    } finally {
+      setLoading(false);
     }
+  }
+  useEffect(() => {
+    
     fetchQuestions(topic);
   }, [topic]);
 
@@ -108,6 +108,22 @@ export default function Home() {
     return (
       <div className=" ">
           <CreativeAILoader/>
+      </div>
+    );
+  }
+
+  if (questions.length === 0) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <p className="text-xl sm:text-2xl font-semibold text-gray-800">
+        Click Here!! To start Test        
+        </p>
+        <button
+          onClick={() =>fetchQuestions(topic)}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg mt-4 hover:bg-blue-700 transition-colors duration-200"
+        >
+          Start test
+        </button>
       </div>
     );
   }

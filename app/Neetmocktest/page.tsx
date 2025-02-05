@@ -88,25 +88,25 @@ const NeetMockTest = () => {
   const [showResults, setShowResults] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-
-  useEffect(() => {
-    async function fetchQuestions() {
-      try {
-        const res = await fetch("/api/Neetquestions", {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-        if (res.ok) {
-          const data = await res.json();
-          console.log(data);
-          setQuestions(data.data);
-        }
-      } catch (error) {
-        console.error("Error fetching questions:", error);
-      } finally {
-        setLoading(false);
+  async function fetchQuestions() {
+    try {
+      const res = await fetch("/api/Neetquestions", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        // console.log(data);
+        setQuestions(data.data);
       }
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+    } finally {
+      setLoading(false);
     }
+  }
+  useEffect(() => {
+    
     fetchQuestions();
   }, []);
 
@@ -191,6 +191,22 @@ const NeetMockTest = () => {
       <>
       <CreativeAILoader/>
        </>
+    );
+  }
+
+  if (questions.length === 0) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <p className="text-xl sm:text-2xl font-semibold text-gray-800">
+        Click Here!! To start Test        
+        </p>
+        <button
+          onClick={() =>fetchQuestions()}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg mt-4 hover:bg-blue-700 transition-colors duration-200"
+        >
+          Start test
+        </button>
+      </div>
     );
   }
 
