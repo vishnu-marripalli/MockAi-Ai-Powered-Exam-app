@@ -93,7 +93,7 @@ export default function HomePage() {
       badge: "Featured",
       users: "10k+",
       questions: "1000+",
-      duration: "30 min",
+      duration: "10 min",
       category: "ai",
       link: "/ai-quiz"
     },

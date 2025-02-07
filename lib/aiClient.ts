@@ -1,10 +1,10 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-export async function fetchQuestions(topic: string) {
+export async function fetchQuestions(topic: string,difficulty:string): Promise<any> {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-    const prompt = `Generate 10 unique and non-repetitive multiple-choice questions on the topic "${topic}" with a difficulty level of extrme-hard. 
+    const prompt = `Generate 10 unique and non-repetitive multiple-choice questions on the topic "${topic}" with a difficulty level of "${difficulty}". 
 Each question should cover a different concept within the topic. 
 
 Format:
@@ -13,6 +13,7 @@ Format:
     "question": "What is the capital of France?",
     "options": ["Berlin", "Madrid", "Paris", "Rome"],
     "correct_answer": "Paris",
+    "explanation":"Because Paris is captail of france",
   }
 ]
 
