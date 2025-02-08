@@ -160,7 +160,7 @@ export default function Home() {
   return (
     <div className="container mx-auto p-4 max-w-2xl">
       <Card className="mb-6">
-        <CardHeader className="flex items-center justify-between flex-row ">
+        <CardHeader className="flex items-center justify-between flex-row ">  
           <div>
             <CardTitle>Ai generated Quiz</CardTitle>
             <CardDescription>Test your knowledge in physics</CardDescription>
@@ -172,8 +172,8 @@ export default function Home() {
               </span>
             </div>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={onSubmit} className="flex gap-2 mb-4">
+        <CardContent >
+          <form onSubmit={onSubmit} className="flex gap-2 mb-4 flex-col ">
             <Input
               type="text"
               name="topic"
